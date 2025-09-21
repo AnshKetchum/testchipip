@@ -1,9 +1,10 @@
-package memctrl
+package testchipip.dram
 
 import chisel3._
 import chisel3.experimental.IntParam
 import chisel3.util.HasBlackBoxResource
 import freechips.rocketchip.amba.axi4.{AXI4BundleParameters, AXI4Bundle}
+import memorysim.integration.SimMemorySimExecutor
 
 /** Replacement for the previous BlackBox-based SimDRAM.
   * This wrapper instantiates the Chisel DRAM model and prints top-level AXI handshake events
