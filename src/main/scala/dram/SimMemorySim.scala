@@ -6,13 +6,6 @@ import chisel3.util.HasBlackBoxResource
 import freechips.rocketchip.amba.axi4.{AXI4BundleParameters, AXI4Bundle}
 import memorysim.integration.SimMemorySimExecutor
 
-/** Replacement for the previous BlackBox-based SimDRAM.
-  * This wrapper instantiates the Chisel DRAM model and prints top-level AXI handshake events
-  * using plain printf("...", args...).
-  *
-  * Note: run simulation with Verilator (e.g. chiseltest + VerilatorBackendAnnotation)
-  * to see the $fwrite output from generated Verilog.
-  */
 class SimMemorySim(memSize: BigInt, lineSize: Int, clockFreqHz: BigInt, memBase: BigInt,
               params: AXI4BundleParameters, chipId: Int) extends Module {
   val io = IO(new Bundle {
