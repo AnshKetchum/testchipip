@@ -7,7 +7,7 @@ import freechips.rocketchip.amba.axi4.{AXI4BundleParameters, AXI4Bundle}
 import memorysim.integration.SimMemorySimExecutor
 
 class SimMemorySim(memSize: BigInt, lineSize: Int, clockFreqHz: BigInt, memBase: BigInt,
-              params: AXI4BundleParameters, chipId: Int) extends Module {
+              params: AXI4BundleParameters, chipId: Int, nChannels: Int, nRanks: Int, nBanks: Int) extends Module {
   val io = IO(new Bundle {
     val clock = Input(Clock())
     val reset = Input(Reset())
@@ -16,7 +16,7 @@ class SimMemorySim(memSize: BigInt, lineSize: Int, clockFreqHz: BigInt, memBase:
 
   // instantiate the chisel DRAM model using the incoming clock/reset
   val dram = withClockAndReset(io.clock, io.reset) {
-    Module(new SimMemorySimExecutor(memSize, lineSize, memBase, params, chipId))
+    Module(new SimMemorySimExecutor(memSize, lineSize, memBase, params, chipId, nChannels, nRanks, nBanks))
   }
 
   // wire axi through
